@@ -235,7 +235,7 @@ class GeneratorPage extends StatelessWidget {
     return Center(
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         const Expanded(
-          flex: 3,
+          flex: 10,
           child: HistoryListView(),
         ),
         const SizedBox(

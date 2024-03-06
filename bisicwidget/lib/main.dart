@@ -35,6 +35,30 @@ class MyScaffold extends StatelessWidget {
           const Expanded(
             child: Center(
               child: Text("Hello World"),
+              /*  child: Material(
+              color: Colors.amber,
+              elevation: 10,
+              shadowColor: Colors.green,
+              shape: RoundedRectangleBorder(
+                side: const BorderSide(
+                  width: 1.0,
+                  style: BorderStyle.none,
+                ),
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              child: Container(
+                padding: const EdgeInsets.all(10.0),
+                decoration: BoxDecoration(
+                  border: Border(
+                    top: BorderSide(
+                        width: 16.0, color: Colors.lightBlue.shade100),
+                    bottom: BorderSide(
+                        width: 16.0, color: Colors.lightBlue.shade500),
+                  ),
+                ),
+                child: const Text("Hello World"),
+              ),
+            ), */
             ),
           ),
         ],

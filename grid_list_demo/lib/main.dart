@@ -91,13 +91,14 @@ class GridListDemo extends StatelessWidget {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           title: const Text("Grid view"),
+          backgroundColor: const Color.fromARGB(255, 159, 83, 85),
         ),
         body: GridView.count(
           restorationId: 'grid_view_demo_grid_offset',
           crossAxisCount: 2,
-          mainAxisSpacing: 8,
-          crossAxisSpacing: 8,
-          padding: const EdgeInsets.all(8),
+          mainAxisSpacing: 4,
+          crossAxisSpacing: 4,
+          padding: const EdgeInsets.all(4),
           childAspectRatio: 1,
           children: _photo.map<Widget>((photo) {
             return _GridDemoPhotoItem(
@@ -158,6 +159,7 @@ class _GridDemoPhotoItem extends StatelessWidget {
             clipBehavior: Clip.antiAlias,
             child: GridTileBar(
               title: _GridTitleText(photo.title),
+              //subtitle: _GridTitleText(photo.subtitle),
               backgroundColor: Colors.black45,
             ),
           ),
@@ -172,7 +174,7 @@ class _GridDemoPhotoItem extends StatelessWidget {
             clipBehavior: Clip.antiAlias,
             child: GridTileBar(
               backgroundColor: Colors.black45,
-              title: _GridTitleText(photo.title),
+              //title: _GridTitleText(photo.title),
               subtitle: _GridTitleText(photo.subtitle),
             ),
           ),

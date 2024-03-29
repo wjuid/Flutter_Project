@@ -85,7 +85,7 @@ class _BottomNavigationDemoState extends State<BottomNavigationDemo>
         ),
         body: Center(
           child: PageTransitionSwitcher(
-            duration: const Duration(milliseconds: 10000),
+            duration: const Duration(milliseconds: 1000),
             transitionBuilder: (child, primaryAnimation, secondaryAnimation) {
               /*  return FadeThroughTransition(
                   animation: primaryAnimation,
@@ -94,7 +94,7 @@ class _BottomNavigationDemoState extends State<BottomNavigationDemo>
               return SharedAxisTransition(
                 animation: primaryAnimation,
                 secondaryAnimation: secondaryAnimation,
-                transitionType: SharedAxisTransitionType.scaled,
+                transitionType: SharedAxisTransitionType.horizontal,
                 child: child,
               );
             },
@@ -142,7 +142,7 @@ class _NavigationDestinationView extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(16),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(18),
                 child: Image.asset('assets/images/pic.jpg'),
               ),
             ),
@@ -151,7 +151,7 @@ class _NavigationDestinationView extends StatelessWidget {
         Center(
           child: IconTheme(
             data: const IconThemeData(
-              color: Colors.white,
+              color: Color.fromARGB(255, 184, 173, 173),
               size: 80,
             ),
             child: Semantics(

@@ -110,7 +110,7 @@ class TappableTravelDestinationItem extends StatelessWidget {
                 child: InkWell(
                   onTap: () {},
                   splashColor:
-                      Theme.of(context).colorScheme.onSurface.withOpacity(0.12),
+                      Theme.of(context).colorScheme.onSurface.withOpacity(0.1),
                   highlightColor: Colors.transparent,
                   child: Semantics(
                     label: destination.title,
@@ -296,7 +296,7 @@ class TraveDestinationContent extends StatelessWidget {
             padding: const EdgeInsets.all(8),
             child: OverflowBar(
               alignment: MainAxisAlignment.start,
-              spacing: 8,
+              spacing: 28,
               children: [
                 TextButton(
                     onPressed: () {},
@@ -340,39 +340,102 @@ class _CardsDemoState extends State<CardsDemo> with RestorationMixin {
     super.dispose();
   }
 
+  final GlobalKey _appBarKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        backgroundColor: Colors.green,
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          title: const Text('Cards'),
-        ),
-        body: Scrollbar(
-          child: ListView(
-            restorationId: 'cards_demo_list_view',
-            padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
-            children: [
-              for (final destination in _destinations)
-                Container(
-                  margin: const EdgeInsets.only(bottom: 8),
-                  child: switch (destination.cardType) {
-                    CardType.standard =>
-                      TravelDestinationItem(destination: destination),
-                    CardType.tappable =>
-                      TappableTravelDestinationItem(destination: destination),
-                    CardType.selectable => SelectableTravelDestinationItem(
-                        destination: destination,
-                        isSelected: _isSelected.value,
-                        onSelected: () {
-                          setState(() {
-                            _isSelected.value = !_isSelected.value;
-                          });
-                        }),
-                  },
-                ),
-            ],
+      debugShowCheckedModeBanner: false,
+      home: DefaultTabController(
+        length: 3,
+        initialIndex: 0,
+        child: Scaffold(
+          backgroundColor: Colors.green[400],
+          appBar: AppBar(
+            key: _appBarKey,
+            primary: true,
+            backgroundColor: Colors.white,
+            leading: IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: const Icon(
+                  Icons.arrow_back_sharp,
+                  color: Colors.black,
+                )),
+            leadingWidth: 60,
+            iconTheme: const IconThemeData(color: Colors.black, opacity: 1),
+            automaticallyImplyLeading: true,
+            //  title: const Text('Cards'),
+            title: const TabBar(
+                labelColor: Color(0xff000000),
+                labelStyle: TextStyle(fontSize: 20),
+                unselectedLabelStyle: TextStyle(fontSize: 15),
+                indicatorColor: Colors.amber,
+                tabs: <Widget>[
+                  Tab(text: 'PageA'),
+                  Tab(text: 'PageB'),
+                  Tab(text: 'PageC'),
+                ]),
+            /*     actions: [
+              IconButton(onPressed: () {}, icon: const Icon(Icons.add)),
+              IconButton(onPressed: () {}, icon: const Icon(Icons.delete)),
+              IconButton(onPressed: () {}, icon: const Icon(Icons.update)),
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.qr_code_scanner),
+                tooltip: 'scan one scan',
+              )
+            ], */
+            actionsIconTheme: const IconThemeData(
+              color: Colors.black,
+            ),
+            toolbarOpacity: 0.8,
+            centerTitle: false,
+            elevation: 8,
+            shadowColor: const Color.fromARGB(255, 6, 48, 121),
+            shape: const RoundedRectangleBorder(
+                side: BorderSide(
+              color: Colors.grey,
+              width: 4,
+            )),
+            toolbarHeight: 50,
+            /*   bottom: const TabBar(
+              tabs: <Widget>[
+              Tab(text: 'PageA'),
+              Tab(text: 'PageB'),
+              Tab(
+                text: 'PageC',
+              )
+            ]), */
+          ),
+          body: Scrollbar(
+            radius: const Radius.circular(10),
+            thickness: 8,
+            child: ListView(
+              restorationId: 'cards_demo_list_view',
+              padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
+              scrollDirection: Axis.vertical,
+              children: [
+                for (final destination in _destinations)
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 8),
+                    child: switch (destination.cardType) {
+                      CardType.standard =>
+                        TravelDestinationItem(destination: destination),
+                      CardType.tappable =>
+                        TappableTravelDestinationItem(destination: destination),
+                      CardType.selectable => SelectableTravelDestinationItem(
+                          destination: destination,
+                          isSelected: _isSelected.value,
+                          onSelected: () {
+                            setState(() {
+                              _isSelected.value = !_isSelected.value;
+                            });
+                          }),
+                    },
+                  ),
+              ],
+            ),
           ),
         ),
       ),

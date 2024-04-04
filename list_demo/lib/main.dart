@@ -41,6 +41,7 @@ class ListDemo extends StatelessWidget {
                 subtitle: type == ListDemoType.twoline
                     ? const Text('Secondary text')
                     : null,
+                trailing: const Icon(Icons.done),
               )
           ],
         ),

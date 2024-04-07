@@ -34,19 +34,7 @@ class MainApp extends StatelessWidget {
                         'Kandersteg, followed by a half-hour walk through pastures '
                         'and pine forest, leads you to the lake, which warms to 20 '
                         'degrees Celsius in the summer. Activities enjoyed here '
-                        'include rowing, and riding the summer toboggan run.'
-                        'Lake Oeschinen lies at the foot of the Blüemlisalp in the '
-                        'Lake Oeschinen lies at the foot of the Blüemlisalp in the '
-                        'Lake Oeschinen lies at the foot of the Blüemlisalp in the '
-                        'Lake Oeschinen lies at the foot of the Blüemlisalp in the '
-                        'Lake Oeschinen lies at the foot of the Blüemlisalp in the '
-                        'Lake Oeschinen lies at the foot of the Blüemlisalp in the '
-                        'Lake Oeschinen lies at the foot of the Blüemlisalp in the '
-                        'Lake Oeschinen lies at the foot of the Blüemlisalp in the '
-                        'Lake Oeschinen lies at the foot of the Blüemlisalp in the '
-                        'Lake Oeschinen lies at the foot of the Blüemlisalp in the '
-                        'Lake Oeschinen lies at the foot of the Blüemlisalp in the '
-                        'Lake Oeschinen lies at the foot of the Blüemlisalp in the '),
+                        'include rowing, and riding the summer toboggan run.'),
               ],
             ),
           )),

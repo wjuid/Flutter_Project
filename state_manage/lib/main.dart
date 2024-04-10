@@ -16,12 +16,27 @@ class _TapboxAState extends State<TapboxA> {
     setState(() {
       _active = !_active;
     });
+    debugPrint('onTap');
   }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: _handleTap,
+      onTapUp: (details) {
+        debugPrint(
+            'onTapup----${details.globalPosition}------${details.localPosition}');
+      },
+      onTapDown: (details) {
+        debugPrint(
+            'onTapDown----${details.globalPosition}------${details.localPosition}');
+      },
+      onTapCancel: () {
+        debugPrint('onTapCancel');
+      },
+      onDoubleTap: () {
+        debugPrint('onDoubleTap');
+      },
       child: Container(
         width: 200,
         height: 200,

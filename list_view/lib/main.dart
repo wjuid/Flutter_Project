@@ -10,11 +10,18 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(
+            seedColor: const Color.fromARGB(255, 207, 112, 171)),
+        cardTheme: const CardTheme(color: Colors.yellowAccent),
+        useMaterial3: true,
+      ),
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Basic LIst'),
         ),
-        body: Center(child: MixedList()),
+        body: const LongList(),
       ),
     );
   }
@@ -160,6 +167,67 @@ class MixedList extends StatelessWidget {
         return ListTile(
           title: item.buildTitle(context),
           subtitle: item.buildSubtitle(context),
+        );
+      },
+    );
+  }
+}
+
+class SpacedItemList extends StatelessWidget {
+  const SpacedItemList({super.key});
+  @override
+  Widget build(BuildContext context) {
+    const items = 15;
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return SingleChildScrollView(
+            child: ConstrainedBox(
+          constraints: BoxConstraints(minHeight: constraints.maxHeight),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: List.generate(
+              items,
+              (index) => ItemWidget(text: 'Item $index'),
+            ),
+          ),
+        ));
+      },
+    );
+  }
+}
+
+class ItemWidget extends StatelessWidget {
+  const ItemWidget({super.key, required this.text});
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: SizedBox(
+        height: 50,
+        child: Center(
+          child: Text(text),
+        ),
+      ),
+    );
+  }
+}
+
+class LongList extends StatelessWidget {
+  const LongList({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final List<String> items = List.generate(10000, (index) => 'Item $index');
+    return ListView.builder(
+      itemCount: items.length,
+      prototypeItem: ListTile(
+        title: Text(items.first),
+      ),
+      itemBuilder: (context, index) {
+        return ListTile(
+          title: Text(items[index]),
         );
       },
     );

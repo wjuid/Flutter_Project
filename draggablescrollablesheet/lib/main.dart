@@ -62,14 +62,21 @@ class _DraggableScrollableSheetExample
               Flexible(
                 child: ListView.builder(
                   controller: _isOnDesktopAndWeb ? null : scrollController,
-                  itemCount: 25,
+                  itemCount: 46,
                   itemBuilder: (context, index) {
-                    return ListTile(
-                      title: Text(
-                        'Ite, $index',
-                        style: TextStyle(color: colorScheme.surface),
-                      ),
-                    );
+                    if (index < 47) {
+                      return Padding(
+                        padding: const EdgeInsets.all(18.0),
+                        child: SizedBox(
+                          height: 200,
+                          child: Image(
+                            image:
+                                AssetImage('assets/images/(${index + 1}).jpg'),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      );
+                    }
                   },
                 ),
               )

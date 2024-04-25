@@ -43,7 +43,7 @@ class _DraggableScrollableSheetExample
       initialChildSize: _sheetPosition,
       builder: (context, scrollController) {
         return ColoredBox(
-          color: colorScheme.primary,
+          color: colorScheme.inversePrimary,
           child: Column(
             children: [
               Grabber(
@@ -66,7 +66,7 @@ class _DraggableScrollableSheetExample
                   itemBuilder: (context, index) {
                     if (index < 47) {
                       return Padding(
-                        padding: const EdgeInsets.all(18.0),
+                        padding: const EdgeInsets.all(8.0),
                         child: SizedBox(
                           height: 200,
                           child: Image(

@@ -32,6 +32,23 @@ class MainApp extends StatelessWidget {
                 );
               },
             ),
+            SliverPadding(
+              padding: const EdgeInsets.all(8.0),
+              sliver: SliverGrid(
+                delegate: SliverChildBuilderDelegate((context, index) {
+                  return Container(
+                    alignment: Alignment.center,
+                    color: Colors.cyan[100 * (index % 9)],
+                    child: Text('grid item $index'),
+                  );
+                }, childCount: 40),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 10,
+                    childAspectRatio: 4),
+              ),
+            ),
             SliverFixedExtentList(
               itemExtent: 50,
               delegate: SliverChildBuilderDelegate(

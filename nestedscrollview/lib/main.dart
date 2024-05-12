@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 void main() {
   runApp(const MainApp());
@@ -29,7 +30,7 @@ class NestedScrollViewDemo extends StatelessWidget {
               sliver: SliverAppBar(
                 title: const Text('Nested ListView'),
                 centerTitle: true,
-                //  pinned: true,
+                // pinned: true,
                 snap: true,
                 floating: true,
                 forceElevated: innerBoxIsScrolled,
@@ -42,11 +43,16 @@ class NestedScrollViewDemo extends StatelessWidget {
                 ),
               ),
             ),
-            /* SliverList(
-              delegate: SliverChildBuilderDelegate((context, index) {
-                return ListTile(title: Text('$index'));
-              }, childCount: 10),
-            ) */
+            SliverGrid(
+                delegate: SliverChildBuilderDelegate(
+                    (context, index) => Container(
+                          color: Colors.primaries[
+                              Random().nextInt(Colors.primaries.length)],
+                          height: 150,
+                        ),
+                    childCount: 20),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 4)),
           ];
         },
         body: ListView.builder(

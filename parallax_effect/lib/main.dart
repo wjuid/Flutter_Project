@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 void main() {
   runApp(const MainApp());
@@ -81,11 +82,18 @@ class LocationListItem extends StatelessWidget {
         backgroundImageKey: _backgroundImageKey,
       ),
       children: [
-        Image.network(
+        CachedNetworkImage(
+          imageUrl: imageUrl,
+          key: _backgroundImageKey,
+          fit: BoxFit.cover,
+          placeholder: (context, url) => const CircularProgressIndicator(),
+          errorWidget: (context, url, error) => const Icon(Icons.error),
+        ),
+        /* Image.network(
           imageUrl,
           key: _backgroundImageKey,
           fit: BoxFit.cover,
-        )
+        ) */
       ],
     );
   }

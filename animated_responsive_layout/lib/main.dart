@@ -1,5 +1,6 @@
 import 'package:animated_responsive_layout/animations.dart';
 import 'package:animated_responsive_layout/widgets/animated_floating_action_button.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'models/data.dart' as data;
 import 'models/models.dart';
@@ -44,6 +45,7 @@ class _FeedState extends State<Feed> with SingleTickerProviderStateMixin {
   late final _controller = AnimationController(
       value: 0,
       vsync: this,
+      debugLabel: '$runtimeType is call',
       duration: const Duration(milliseconds: 1000),
       reverseDuration: const Duration(milliseconds: 1250));
 
@@ -56,7 +58,11 @@ class _FeedState extends State<Feed> with SingleTickerProviderStateMixin {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+
     final double width = MediaQuery.of(context).size.width;
+    debugPrint(
+        "$runtimeType -- didChangeDependencies -- call time: ${DateTime.now().millisecond}ms -- screen width $width  ");
+
     final AnimationStatus status = _controller.status;
     if (width > 600) {
       if (status != AnimationStatus.forward &&
@@ -71,18 +77,32 @@ class _FeedState extends State<Feed> with SingleTickerProviderStateMixin {
     }
     if (!controllerInitialized) {
       controllerInitialized = true;
-      _controller.value = width > 600 ? 1 : 0;
+      _controller.value = width > 500 ? 1 : 0;
     }
   }
 
   @override
+  void initState() {
+    super.initState();
+    debugPrint('$runtimeType  initState');
+  }
+
+  @override
+  void didUpdateWidget(Feed oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    debugPrint('$runtimeType didUpdateWidget is call');
+  }
+
+  @override
   void dispose() {
+    debugPrint('$runtimeType ------dispose');
     _controller.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    debugPrint('$runtimeType   build   ${_controller.debugLabel.toString()}}');
     return AnimatedBuilder(
       animation: _controller,
       builder: (context, child) {
